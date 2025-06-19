@@ -68,17 +68,18 @@ public class UserDAOImpl implements UserDAO {
   }
 
   @Override
-  public boolean deleteUser(Long id) {
+  public boolean deleteUser(Long id) throws DAOException {
     try (Connection conn = ConnectionFactory.getInstance().getConnection();
         PreparedStatement ps = conn.prepareStatement(DELETE)) {
       ps.setLong(1, id);
       return ps.executeUpdate() > 0;
     } catch (SQLException e) {
       System.err.println("Error al eliminar usuario: " + e.getMessage());
+      throw new DAOException("Error al eliminar usuario", e);
     } catch (Exception e) {
       System.err.println("Error inesperado al eliminar usuario: " + e.getMessage());
+      throw new DAOException("Error inesperado al eliminar usuario", e);
     }
-    return false;
   }
 
   @Override

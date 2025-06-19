@@ -11,7 +11,7 @@ public interface UserDAO {
 
   boolean updateUser(UserModel user) throws DAOException;
 
-  boolean deleteUser(Long id);
+  boolean deleteUser(Long id) throws DAOException;
 
   Optional<UserModel> getUserById(Long id) throws DAOException;
 
