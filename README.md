@@ -53,15 +53,15 @@ El proyecto sigue el patrón de arquitectura MVC (Modelo-Vista-Controlador) y es
 ```
 java-swing-crud-jdbc/ 
 ├── src/ 
-│  └── main/ 
-│     ├── java/
-│     │   └── cl/duoc/swingapp/ 
-│     │       ├── controller/ # Controladores para la lógica de negocio 
-│     │       ├── model/ # Modelos de datos y DAOs 
-│     │       ├── view/ # Componentes de la interfaz gráfica 
-│     │       └── Main.java # Punto de entrada de la aplicación 
-│     └── resources/ 
-│         └── db.properties # Configuración de la base de datos 
+│   └── main/ 
+│       ├── java/
+│       │   └── cl/duoc/swingapp/ 
+│       │       ├── controller/ # Controladores para la lógica de negocio 
+│       │       ├── model/ # Modelos de datos y DAOs 
+│       │       ├── view/ # Componentes de la interfaz gráfica 
+│       │       └── Main.java # Punto de entrada de la aplicación 
+│       └── resources/ 
+│           └── db.properties # Configuración de la base de datos 
 ├── pom.xml # Configuración de Maven y dependencias 
 └── README.md # Documentación del proyecto
 ```
