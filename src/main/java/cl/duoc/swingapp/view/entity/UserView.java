@@ -58,7 +58,11 @@ public class UserView {
   }
 
   public static UserView fromModel(UserModel um) {
-    return new UserView(um.getId(), um.getUsername(), um.getPassword(), um.getEmail());
+    return new UserView(
+            um.getId(),
+            um.getUsername(),
+            um.getPassword(),
+            um.getEmail());
   }
 
   public UserModel toModel() {
