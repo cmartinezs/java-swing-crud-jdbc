@@ -17,7 +17,5 @@ public interface UserDAO {
 
   Optional<UserModel> getUserByUsername(String username) throws DAOException;
 
-  Optional<UserModel> getUserByEmail(String email) throws DAOException;
-
   List<UserModel> getAllUsers() throws DAOException;
 }

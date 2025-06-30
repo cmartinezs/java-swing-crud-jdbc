@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class UserController {
@@ -75,11 +74,13 @@ public class UserController {
     if (confirm == JOptionPane.NO_OPTION) {
       return;
     }
+
+    if (!this.form.validateUserView()) {
+      return;
+    }
+
     try {
-      if (!this.form.validateUserView()) {
-        return;
-      }
-      UserModel um = this.form.getUserView().toModel();
+      UserModel um = toModel(this.form.getUserView());
       if (um.getId() == null) {
         this.userDao.createUser(um);
       } else {
@@ -100,7 +101,7 @@ public class UserController {
     try {
       Optional<UserModel> optUm = this.userDao.getUserById(userId);
       if (optUm.isPresent()) {
-        this.form.setUserView(UserView.fromModel(optUm.get()));
+        this.form.setUserView(toView(optUm.get()));
       } else {
         this.userPanel.showError("Usuario no encontrado");
         this.form.dispose();
@@ -140,7 +141,23 @@ public class UserController {
   }
 
   private static List<UserView> collectViewFromModel(List<UserModel> users) {
-    return users.stream().map(UserView::fromModel).collect(Collectors.toList());
+    return users.stream().map(UserController::toView).collect(Collectors.toList());
+  }
+
+  private static UserView toView(UserModel um) {
+    return new UserView(
+            um.getId(),
+            um.getUsername(),
+            um.getPassword(),
+            um.getEmail());
+  }
+
+  private static UserModel toModel(UserView uv) {
+    return new UserModel(
+            uv.getId(),
+            uv.getUsername(),
+            uv.getPassword(),
+            uv.getEmail());
   }
 
   public JPanel getUserPanel() {

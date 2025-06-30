@@ -2,6 +2,8 @@ package cl.duoc.swingapp.controller;
 
 import cl.duoc.swingapp.view.window.MainFrame;
 
+import java.awt.event.ActionEvent;
+
 public class MainController {
   private final MainFrame mainFrame;
   private final UserController userController;
@@ -13,10 +15,10 @@ public class MainController {
   }
 
   private void initListeners() {
-    this.mainFrame.addMenuUsersListListener(e -> showUserPanel());
+    this.mainFrame.addMenuUsersListListener(this::showUserPanel);
   }
 
-  private void showUserPanel() {
+  private void showUserPanel(ActionEvent actionEvent) {
     this.mainFrame.setMainContent(this.userController.getUserPanel());
   }
 
