@@ -28,6 +28,7 @@ public class Main {
 
     if (loginController.isLoginCancelled()) {
       System.out.println("Inicio de sesión cancelado por el usuario.");
+      System.exit(0);
       return;
     }
     System.out.println("Inicio de sesión exitoso. Cargando la aplicación...");

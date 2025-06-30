@@ -42,8 +42,8 @@ public class LoginController {
 
     LoginView loginView = this.loginDialog.getView();
 
-    if (loginView.isValid()) {
-      this.loginDialog.showErrorMessage(ERROR_NO_CREDENTIALS);
+    if (!loginView.isValid()) {
+      this.loginDialog.showErrorMessage(loginView.getValidationErrors());
       return;
     }
 

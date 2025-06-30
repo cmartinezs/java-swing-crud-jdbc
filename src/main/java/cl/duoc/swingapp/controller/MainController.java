@@ -20,6 +20,7 @@ public class MainController {
 
   private void showUserPanel(ActionEvent actionEvent) {
     this.userController.loadUserTable();
+    this.userController.disabledUserForm();
     this.mainFrame.setMainContent(this.userController.getUserPanel());
   }
 

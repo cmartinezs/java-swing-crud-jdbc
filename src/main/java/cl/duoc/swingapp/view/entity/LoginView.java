@@ -17,7 +17,21 @@ public class LoginView {
     return password;
   }
 
+  public String getValidationErrors() {
+    StringBuilder errors = new StringBuilder();
+
+    if (username == null || username.trim().isEmpty()) {
+      errors.append("El nombre de usuario es requerido\n");
+    }
+
+    if (password == null || password.trim().isEmpty()) {
+      errors.append("La contraseña es requerida\n");
+    }
+
+    return errors.toString();
+  }
+
   public boolean isValid() {
-    return username == null || username.isEmpty() || password == null || password.isEmpty();
+    return getValidationErrors().isEmpty();
   }
 }
