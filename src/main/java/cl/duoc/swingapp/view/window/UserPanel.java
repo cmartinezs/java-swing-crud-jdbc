@@ -39,21 +39,22 @@ public class UserPanel extends javax.swing.JPanel {
     buttonRefresh = new javax.swing.JButton();
     scrollPaneTableUsers = new javax.swing.JScrollPane();
     tableUsers = new javax.swing.JTable();
+    panelForm = new javax.swing.JPanel();
 
-    panelTitle.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 36)); // NOI18N
+    panelTitle.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
     panelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     panelTitle.setText("Panel de registro de usuarios");
 
-    buttonNew.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 15)); // NOI18N
+    buttonNew.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
     buttonNew.setText("Nuevo");
 
-    buttonEdit.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 15)); // NOI18N
+    buttonEdit.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
     buttonEdit.setText("Editar");
 
-    buttonDelete.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 15)); // NOI18N
+    buttonDelete.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
     buttonDelete.setText("Eliminar");
 
-    buttonRefresh.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 15)); // NOI18N
+    buttonRefresh.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
     buttonRefresh.setText("Recargar");
 
     javax.swing.GroupLayout panelButtonsLayout = new javax.swing.GroupLayout(panelButtons);
@@ -96,13 +97,7 @@ public class UserPanel extends javax.swing.JPanel {
 
     tableUsers.setModel(
         new javax.swing.table.DefaultTableModel(
-            new Object[][] {
-              {null, null, null},
-              {null, null, null},
-              {null, null, null},
-              {null, null, null}
-            },
-            new String[] {"ID", "Nombre de Usuario", "Correo Electrónico´"}) {
+            new Object[][] {}, new String[] {"ID", "Nombre de Usuario", "Correo Electrónico´"}) {
           Class[] types =
               new Class[] {java.lang.Long.class, java.lang.String.class, java.lang.String.class};
           boolean[] canEdit = new boolean[] {false, false, false};
@@ -127,31 +122,47 @@ public class UserPanel extends javax.swing.JPanel {
       tableUsers.getColumnModel().getColumn(2).setResizable(false);
     }
 
+    javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
+    panelForm.setLayout(panelFormLayout);
+    panelFormLayout.setHorizontalGroup(
+        panelFormLayout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE));
+    panelFormLayout.setVerticalGroup(
+        panelFormLayout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 196, Short.MAX_VALUE));
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
         layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
                 layout
                     .createSequentialGroup()
                     .addContainerGap()
                     .addGroup(
                         layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(
+                                panelForm,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
                             .addComponent(
                                 panelTitle,
-                                javax.swing.GroupLayout.Alignment.TRAILING,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 Short.MAX_VALUE)
                             .addComponent(
                                 panelButtons,
+                                javax.swing.GroupLayout.Alignment.LEADING,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 Short.MAX_VALUE)
-                            .addComponent(
-                                scrollPaneTableUsers, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(scrollPaneTableUsers))
                     .addContainerGap()));
     layout.setVerticalGroup(
         layout
@@ -165,21 +176,24 @@ public class UserPanel extends javax.swing.JPanel {
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         60,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(18, 18, 18)
+                    .addComponent(
+                        scrollPaneTableUsers,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        233,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
                     .addComponent(
                         panelButtons,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                    .addGap(18, 18, 18)
+                    .addComponent(
+                        panelForm,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         Short.MAX_VALUE)
-                    .addComponent(
-                        scrollPaneTableUsers,
-                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()));
   } // </editor-fold>//GEN-END:initComponents
 
@@ -209,7 +223,9 @@ public class UserPanel extends javax.swing.JPanel {
 
   public Optional<Long> getSelectedUserId() {
     int row = tableUsers.getSelectedRow();
-    return row < 0 ? Optional.empty() : Optional.ofNullable((Long) getTableModel().getValueAt(row, 0));
+    return row < 0
+        ? Optional.empty()
+        : Optional.ofNullable((Long) getTableModel().getValueAt(row, 0));
   }
 
   public void setTableData(List<UserView> users) {
@@ -228,6 +244,7 @@ public class UserPanel extends javax.swing.JPanel {
   private javax.swing.JButton buttonNew;
   private javax.swing.JButton buttonRefresh;
   private javax.swing.JPanel panelButtons;
+  private javax.swing.JPanel panelForm;
   private javax.swing.JLabel panelTitle;
   private javax.swing.JScrollPane scrollPaneTableUsers;
   private javax.swing.JTable tableUsers;

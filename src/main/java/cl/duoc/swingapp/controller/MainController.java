@@ -19,6 +19,7 @@ public class MainController {
   }
 
   private void showUserPanel(ActionEvent actionEvent) {
+    this.userController.loadUserTable();
     this.mainFrame.setMainContent(this.userController.getUserPanel());
   }
 

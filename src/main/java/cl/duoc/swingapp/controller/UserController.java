@@ -29,7 +29,7 @@ public class UserController {
     this.userPanel.addNewUserListener(e -> openNewUserForm());
     this.userPanel.addEditUserListener(e -> openEditUserForm());
     this.userPanel.addDeleteUserListener(e -> deleteSelectedUser());
-    this.userPanel.addRefreshUserListener(e -> refreshView());
+    this.userPanel.addRefreshUserListener(e -> loadUserTable());
   }
 
   private void openNewUserForm() {
@@ -46,7 +46,7 @@ public class UserController {
   }
 
   private void openUserForm(Long userId) {
-    this.form = new UserForm(getFrame(this.userPanel), userId, true);
+    this.form = new UserForm(getFrame(), userId, true);
     this.form.setLoadUserCallback(this::loadUser);
     this.form.addSaveListener(e -> saveUser());
     try {
@@ -58,8 +58,8 @@ public class UserController {
     }
   }
 
-  private Frame getFrame(JPanel panel) {
-    Window window = SwingUtilities.getWindowAncestor(panel);
+  private Frame getFrame() {
+    Window window = SwingUtilities.getWindowAncestor(this.userPanel);
     if (window instanceof Frame aFrame) {
       return aFrame;
     } else {
@@ -86,7 +86,7 @@ public class UserController {
       } else {
         this.userDao.updateUser(um);
       }
-      refreshView();
+      loadUserTable();
     } catch (DAOException ex) {
       this.userPanel.showError(ex.getMessage());
       return;
@@ -126,13 +126,13 @@ public class UserController {
     }
     try {
       this.userDao.deleteUser(optId.get());
-      refreshView();
+      loadUserTable();
     } catch (Exception e) {
       this.userPanel.showError(e.getMessage());
     }
   }
 
-  private void refreshView() {
+  public void loadUserTable() {
     try {
       this.userPanel.setTableData(collectViewFromModel(this.userDao.getAllUsers()));
     } catch (Exception e) {

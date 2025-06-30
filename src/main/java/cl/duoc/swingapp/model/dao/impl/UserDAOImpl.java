@@ -136,32 +136,6 @@ public class UserDAOImpl implements UserDAO {
   }
 
   @Override
-  public Optional<UserModel> getUserByEmail(String email) throws DAOException {
-    try (Connection conn = ConnectionFactory.getInstance().getConnection();
-        PreparedStatement ps = conn.prepareStatement(SELECT_BY_EMAIL)) {
-      ps.setString(1, email);
-      try (ResultSet rs = ps.executeQuery()) {
-        if (rs.next()) {
-          return Optional.of(
-              new UserModel(
-                  rs.getLong("id"),
-                  rs.getString("username"),
-                  rs.getString("password"),
-                  rs.getString("email")));
-        }
-        System.out.println("Usuario no encontrado con email: " + email);
-      }
-    } catch (SQLException e) {
-      System.err.println("Error al obtener usuario por email: " + e.getMessage());
-      throw new DAOException("Error al obtener usuario por email", e);
-    } catch (Exception e) {
-      System.err.println("Error inesperado al obtener usuario por email: " + e.getMessage());
-      throw new DAOException("Error inesperado al obtener usuario por email", e);
-    }
-    return Optional.empty();
-  }
-
-  @Override
   public List<UserModel> getAllUsers() throws DAOException {
     List<UserModel> list = new ArrayList<>();
     try (Connection conn = ConnectionFactory.getInstance().getConnection();
