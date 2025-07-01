@@ -4,7 +4,7 @@ import cl.duoc.swingapp.controller.LoginController;
 import cl.duoc.swingapp.controller.MainController;
 import cl.duoc.swingapp.controller.UserController;
 import cl.duoc.swingapp.model.dao.impl.UserDAOImpl;
-import cl.duoc.swingapp.view.window.LoginDialog;
+import cl.duoc.swingapp.view.window.LoginForm;
 import cl.duoc.swingapp.view.window.MainFrame;
 import cl.duoc.swingapp.view.window.UserPanel;
 
@@ -19,19 +19,19 @@ public class Main {
   private static void start() {
 
     UserDAOImpl userDao = new UserDAOImpl();
-    LoginController loginController = new LoginController(new LoginDialog(), userDao);
+    LoginController loginController = new LoginController(new LoginForm(), userDao);
     MainController mainController =
         new MainController(new MainFrame(), new UserController(new UserPanel(), userDao));
 
-    System.out.println("Mostrando el diálogo de inicio de sesión...");
-    loginController.showLogin();
-
-    if (loginController.isLoginCancelled()) {
-      System.out.println("Inicio de sesión cancelado por el usuario.");
+    loginController.runOnLoginSuccess(() -> {
+      System.out.println("Login exitoso, cargando la aplicación de principal...");
+      mainController.show();
+    });
+    loginController.runOnLoginCancel(() -> {
+      System.out.println("Login cancelado, cerrando la aplicación...");
       System.exit(0);
-      return;
-    }
-    System.out.println("Inicio de sesión exitoso. Cargando la aplicación...");
-    mainController.show();
+    });
+    System.out.println("Mostrando el jframe de inicio de sesión...");
+    loginController.showLogin();
   }
 }

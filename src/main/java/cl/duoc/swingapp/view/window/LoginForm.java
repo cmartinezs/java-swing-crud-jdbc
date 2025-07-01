@@ -1,28 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package cl.duoc.swingapp.view.window;
 
 import cl.duoc.swingapp.view.entity.LoginView;
-
-import java.awt.*;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 /**
  * @author cmartinezs
  */
-public class LoginDialog extends javax.swing.JDialog {
+public class LoginForm extends javax.swing.JFrame {
   private boolean listenerLogin;
   private boolean listenerCancel;
 
   private static final java.util.logging.Logger logger =
-      java.util.logging.Logger.getLogger(LoginDialog.class.getName());
+      java.util.logging.Logger.getLogger(LoginForm.class.getName());
 
   /** Creates new form LoginForm */
-  public LoginDialog() {
-    super((JFrame) null, true);
+  public LoginForm() {
     this.initComponents();
     this.setLocationRelativeTo(null);
     this.setResizable(false);
@@ -39,39 +36,39 @@ public class LoginDialog extends javax.swing.JDialog {
     loginAppTitle = new javax.swing.JLabel();
     loginTitle = new javax.swing.JLabel();
     lblUsername = new javax.swing.JLabel();
-    lblPassword = new javax.swing.JLabel();
     fdUsername = new javax.swing.JTextField();
+    lblPassword = new javax.swing.JLabel();
     fdPassword = new javax.swing.JPasswordField();
-    separator = new javax.swing.JSeparator();
     btnLogin = new javax.swing.JButton();
     btnCancel = new javax.swing.JButton();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    setTitle("Swing APP: Ingreso de Usuario");
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setResizable(false);
+    setSize(new java.awt.Dimension(350, 500));
 
-    loginAppTitle.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 36)); // NOI18N
+    loginAppTitle.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
     loginAppTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     loginAppTitle.setText("Swing APP");
 
-    loginTitle.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 24)); // NOI18N
+    loginTitle.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
     loginTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     loginTitle.setText("Ingreso de Usuario");
 
-    lblUsername.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 18)); // NOI18N
+    lblUsername.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
     lblUsername.setText("Nombre de Usuario");
 
-    lblPassword.setFont(new java.awt.Font("Liberation Sans", Font.BOLD, 18)); // NOI18N
+    fdUsername.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+    lblPassword.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
     lblPassword.setText("Contraseña");
 
-    fdUsername.setFont(new java.awt.Font("Liberation Sans", Font.PLAIN, 18)); // NOI18N
-
-    fdPassword.setFont(new java.awt.Font("Liberation Sans", Font.PLAIN, 18)); // NOI18N
+    fdPassword.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
     fdPassword.setPreferredSize(new java.awt.Dimension(64, 24));
 
-    btnLogin.setFont(new java.awt.Font("Liberation Sans", Font.PLAIN, 18)); // NOI18N
+    btnLogin.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
     btnLogin.setText("Ingresar");
 
-    btnCancel.setFont(new java.awt.Font("Liberation Sans", Font.PLAIN, 18)); // NOI18N
+    btnCancel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
     btnCancel.setText("Cancelar");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -79,6 +76,16 @@ public class LoginDialog extends javax.swing.JDialog {
     layout.setHorizontalGroup(
         layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(
+                loginAppTitle,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                Short.MAX_VALUE)
+            .addComponent(
+                loginTitle,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                Short.MAX_VALUE)
             .addGroup(
                 layout
                     .createSequentialGroup()
@@ -86,18 +93,29 @@ public class LoginDialog extends javax.swing.JDialog {
                     .addGroup(
                         layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separator)
-                            .addComponent(
-                                loginTitle,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                318,
-                                Short.MAX_VALUE)
-                            .addComponent(fdUsername)
                             .addComponent(
                                 fdPassword,
+                                javax.swing.GroupLayout.Alignment.TRAILING,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 Short.MAX_VALUE)
+                            .addGroup(
+                                layout
+                                    .createSequentialGroup()
+                                    .addComponent(
+                                        btnLogin,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        164,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
+                                    .addComponent(
+                                        btnCancel,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        178,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(
                                 layout
                                     .createSequentialGroup()
@@ -105,40 +123,31 @@ public class LoginDialog extends javax.swing.JDialog {
                                         layout
                                             .createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblUsername)
-                                            .addComponent(lblPassword))
+                                            .addComponent(
+                                                lblUsername,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                295,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(
+                                                lblPassword,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                252,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(
-                                btnLogin,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE)
-                            .addComponent(
-                                btnCancel,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE))
-                    .addContainerGap())
-            .addGroup(
-                layout
-                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(
-                        layout
-                            .createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(
-                                loginAppTitle,
-                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                318,
-                                Short.MAX_VALUE)
-                            .addContainerGap())));
+                            .addComponent(fdUsername))
+                    .addContainerGap()));
     layout.setVerticalGroup(
         layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
                 layout
                     .createSequentialGroup()
-                    .addGap(80, 80, 80)
+                    .addComponent(
+                        loginAppTitle,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        60,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(
                         loginTitle,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -161,37 +170,20 @@ public class LoginDialog extends javax.swing.JDialog {
                         40,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(
-                        separator,
-                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                        10,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(
-                        btnLogin,
-                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                        40,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(
-                        btnCancel,
-                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                        40,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(
-                layout
-                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(
                         layout
-                            .createSequentialGroup()
-                            .addGap(16, 16, 16)
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(
-                                loginAppTitle,
+                                btnLogin,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
-                                60,
+                                40,
                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(424, Short.MAX_VALUE))));
+                            .addComponent(
+                                btnCancel,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                40,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
@@ -218,36 +210,9 @@ public class LoginDialog extends javax.swing.JDialog {
     }
     // </editor-fold>
 
-    /* Create and display the dialog */
-    java.awt.EventQueue.invokeLater(
-        new Runnable() {
-          @Override
-          public void run() {
-            LoginDialog dialog = new LoginDialog();
-            dialog.addWindowListener(
-                new java.awt.event.WindowAdapter() {
-                  @Override
-                  public void windowClosing(java.awt.event.WindowEvent e) {
-                    System.exit(0);
-                  }
-                });
-            dialog.setVisible(true);
-          }
-        });
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> new LoginForm().setVisible(true));
   }
-
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnCancel;
-  private javax.swing.JButton btnLogin;
-  private javax.swing.JPasswordField fdPassword;
-  private javax.swing.JTextField fdUsername;
-  private javax.swing.JLabel lblPassword;
-  private javax.swing.JLabel lblUsername;
-  private javax.swing.JLabel loginAppTitle;
-  private javax.swing.JLabel loginTitle;
-  private javax.swing.JSeparator separator;
-
-  // End of variables declaration//GEN-END:variables
 
   public LoginView getView() {
     String username = this.fdUsername.getText().trim();
@@ -284,4 +249,15 @@ public class LoginDialog extends javax.swing.JDialog {
   public int showConfirmationMessage(String message) {
     return JOptionPane.showConfirmDialog(this, message, "Confirmación", JOptionPane.YES_NO_OPTION);
   }
+
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnCancel;
+  private javax.swing.JButton btnLogin;
+  private javax.swing.JPasswordField fdPassword;
+  private javax.swing.JTextField fdUsername;
+  private javax.swing.JLabel lblPassword;
+  private javax.swing.JLabel lblUsername;
+  private javax.swing.JLabel loginAppTitle;
+  private javax.swing.JLabel loginTitle;
+  // End of variables declaration//GEN-END:variables
 }
