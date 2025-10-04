@@ -277,6 +277,7 @@ public class UserPanel extends javax.swing.JPanel {
     DefaultTableModel tableModel = getTableModel();
     tableModel.setRowCount(0);
     users.stream().map(this::createTableRow).forEach(tableModel::addRow);
+    System.out.println("Usuarios cargados: " + users.size());
   }
 
   public void showError(String msg) {

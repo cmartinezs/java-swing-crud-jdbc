@@ -238,16 +238,19 @@ public class LoginForm extends javax.swing.JFrame {
     this.listenerCancel = true;
   }
 
-  public void showErrorMessage(String errorNoCredentials) {
-    JOptionPane.showMessageDialog(this, errorNoCredentials, "Error", JOptionPane.ERROR_MESSAGE);
+  public void showErrorMessage(String errorMessage) {
+    System.out.println("Mostrando mensaje de error: " + errorMessage);
+    JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
-  public void showSuccessMessage(String successLogin) {
-    JOptionPane.showMessageDialog(this, successLogin, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+  public void showSuccessMessage(String successMessage) {
+    System.out.println("Mostrando mensaje de éxito: " + successMessage);
+    JOptionPane.showMessageDialog(this, successMessage, "Éxito", JOptionPane.INFORMATION_MESSAGE);
   }
 
-  public int showConfirmationMessage(String message) {
-    return JOptionPane.showConfirmDialog(this, message, "Confirmación", JOptionPane.YES_NO_OPTION);
+  public int showConfirmationMessage(String confirmationMessage) {
+    System.out.println("Mostrando mensaje de confirmación: " + confirmationMessage);
+    return JOptionPane.showConfirmDialog(this, confirmationMessage, "Confirmación", JOptionPane.YES_NO_OPTION);
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

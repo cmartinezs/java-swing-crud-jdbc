@@ -127,16 +127,10 @@ public class UserController {
     }
   }
 
-  private Frame getFrame() {
-    Window window = SwingUtilities.getWindowAncestor(this.userPanel);
-    if (window instanceof Frame aFrame) {
-      return aFrame;
-    } else {
-      throw new IllegalStateException("El panel no está asociado a un Frame");
-    }
-  }
-
   private static List<UserView> collectViewFromModel(List<UserModel> users) {
+    if (users == null || users.isEmpty()) {
+      return List.of();
+    }
     return users.stream().map(UserController::toView).collect(Collectors.toList());
   }
 
